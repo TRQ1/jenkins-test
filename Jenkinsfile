@@ -13,9 +13,7 @@ pipeline {
   stages {
     stage("Ready") {
       steps {
-        sh "ls -la ${pwd()}"
-        sh "/var/lib/jenkins/workspace/springboot-helloworld-java-build/hello-springboot-master/gradlew clean build"
-        sh "./hello-springboot-master/gradlew clean build"
+        sh "cd hello-springboot-master && ./gradlew clean build"
       }
     }
     stage("Unit") {
