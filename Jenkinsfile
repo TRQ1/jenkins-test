@@ -29,9 +29,9 @@ pipeline {
     }
     stage("Publish") {
       steps {
-        sh "sudo /usr/local/bin/docker-compose -f ${DOCKER_COMPOSE_FILE} build app"
-        sh "sudo docker tag ${DOCKER_IMAGE} ${DOCKER_REGISTRY}/${DOCKER_IMAGE}"
-        sh "sudo docker tag ${DOCKER_IMAGE} ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${VERSION}"
+        sh "/usr/local/bin/docker-compose -f ${DOCKER_COMPOSE_FILE} build app"
+        sh "docker tag ${DOCKER_IMAGE} ${DOCKER_REGISTRY}/${DOCKER_IMAGE}"
+        sh "docker tag ${DOCKER_IMAGE} ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${VERSION}"
       }
     }
     stage("Prod-like") {
