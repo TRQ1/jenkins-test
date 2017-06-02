@@ -4,7 +4,7 @@ pipeline {
   environment {
         DOCKER_HOST = 'tcp://146.148.56.53:2375'
         DOCKER_COMPOSE_FILE = 'ci_cd/docker-compose.yml'
-        DOCKER_REGISTRY = ''asia.gcr.io/trq1-161205'
+        DOCKER_REGISTRY = 'asia.gcr.io/trq1-161205'
         DOCKER_IMAGE = 'hello-springboot-app'
         VERSION = "1.0.${BUILD_NUMBER}"
         DOCKER_STACK = 'hello-springboot'
