@@ -24,7 +24,7 @@ pipeline {
     stage("Integ") {
       steps {
         echo "Integration testing phase."
-        sh "./hello-springboot-master/gradlew test"
+        sh "cd hello-springboot-master && ./gradlew test"
       }
     }
     stage("Publish") {
