@@ -2,7 +2,6 @@ pipeline {
   agent any
   
   environment {
-#       DOCKER_HOST = 'tcp://146.148.56.53'
         DOCKER_COMPOSE_FILE = 'ci_cd/docker-compose.yml'
         DOCKER_REGISTRY = 'asia.gcr.io/trq1-161205'
         DOCKER_IMAGE = 'hello-springboot-app'
