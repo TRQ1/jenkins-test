@@ -4,7 +4,7 @@ services:
 
   app:
     build:
-      context: /jenkins-test/ci_cd
+      context: /jenkins-test/hello-springboot-master
       dockerfile: /jenkins-test/ci_cd/Dockerfile
     image: hello-spring-image
     ports:
