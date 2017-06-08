@@ -44,7 +44,7 @@ pipeline {
     stage("Production") {
       steps {
         echo "Producton phase."
-        sh "sudo docker service update --image ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${VERSION} ${DOCKER_STACK}_app"
+        //sh "sudo docker service update --image ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${VERSION} ${DOCKER_STACK}_app"
       }
     }
   }
