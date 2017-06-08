@@ -32,6 +32,7 @@ pipeline {
         sh "/usr/local/bin/docker-compose -f ${DOCKER_COMPOSE_FILE} build app"
         sh "docker tag ${DOCKER_IMAGE} ${DOCKER_REGISTRY}/${DOCKER_IMAGE}"
         sh "docker tag ${DOCKER_IMAGE} ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${VERSION}"
+        sh "docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${VERSION}"
       }
     }
     stage("Prod-like") {
