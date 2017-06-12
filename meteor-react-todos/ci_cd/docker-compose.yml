@@ -4,7 +4,7 @@ services:
 
   app:
     build:
-      context: ../
+      context: /jenkins-test/meteor-react-todos
       dockerfile: ci_cd/Dockerfile
     image: meteor-todos-app
     ports:
