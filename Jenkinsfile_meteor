@@ -24,7 +24,7 @@ pipeline {
     stage("Integ") {
       steps {
         echo "Integration testing phase."
-        sh "/usr/local/bin/meteor test --once --driver-package dispatch:mocha"
+        sh "cd meteor-react-todos && /usr/local/bin/meteor test --once --driver-package dispatch:mocha"
       }
     }
     stage("Publish") {
