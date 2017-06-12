@@ -1,0 +1,16 @@
+version: 0.1
+            
+phases:
+  install:
+    commands:
+      - echo install phase start
+  pre_build:
+    commands:
+      - echo pre_build phase start
+  build:
+    commands:
+      - echo build phase start
+      - docker build --build-arg TOOL_NODE_FLAGS="--max-old-space-size=2048" -f ci_cd/Dockerfile -t mymeteor:latest .
+  post_build:
+    commands:
+      - echo post_build phase start

@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+
+  app:
+    build:
+      context: ../
+      dockerfile: ci_cd/Dockerfile
+    image: meteor-todos-app
+    ports:
+      - "80:3000"
+    environment:
+      - ROOT_URL=http://localhost
+      - MONGO_URL=mongodb://mongo:27017/meteor
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:latest
