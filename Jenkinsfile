@@ -2,10 +2,10 @@ pipeline {
   agent any
   
   environment {
-        DOCKER_HOST = 'tcp://10.128.0.2:2375'
+        //DOCKER_HOST = 'tcp://10.128.0.2:2425'
         DOCKER_COMPOSE_FILE = 'ci_cd/docker-compose.yml'
-        DOCKER_REGISTRY = '10.156.0.2:5000'
-        DOCKER_IMAGE = 'hello-springboot-app'
+        DOCKER_REGISTRY = 'asia.gcr.io/trq1-161205'
+        DOCKER_IMAGE = 'hello-spring-image'
         VERSION = "1.0.${BUILD_NUMBER}"
         DOCKER_STACK = 'hello-springboot'
   }
@@ -13,7 +13,7 @@ pipeline {
   stages {
     stage("Ready") {
       steps {
-        sh "cd ./hello-springboot-master \ ./gradlew clean build"
+        sh "cd hello-springboot-master && ./gradlew clean build"
       }
     }
     stage("Unit") {
@@ -24,7 +24,7 @@ pipeline {
     stage("Integ") {
       steps {
         echo "Integration testing phase."
-        sh "cd ./hello-springboot-master \ ./gradlew test"
+        sh "cd hello-springboot-master && ./gradlew test"
       }
     }
     stage("Publish") {
@@ -32,6 +32,8 @@ pipeline {
         sh "/usr/local/bin/docker-compose -f ${DOCKER_COMPOSE_FILE} build app"
         sh "docker tag ${DOCKER_IMAGE} ${DOCKER_REGISTRY}/${DOCKER_IMAGE}"
         sh "docker tag ${DOCKER_IMAGE} ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${VERSION}"
+        sh "gcloud docker -- push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}"
+        sh "gcloud docker -- push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${VERSION}"
       }
     }
     stage("Prod-like") {
@@ -42,7 +44,7 @@ pipeline {
     stage("Production") {
       steps {
         echo "Producton phase."
-        sh "docker service update --image ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${VERSION} ${DOCKER_STACK}_app"
+        //sh "sudo docker service update --image ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${VERSION} ${DOCKER_STACK}_app"
       }
     }
   }
